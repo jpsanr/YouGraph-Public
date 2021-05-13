@@ -1,0 +1,6 @@
+*.csv
+*.log
+*.xlsx
+modelos_lda/
+__pycache__/
+credentials.py

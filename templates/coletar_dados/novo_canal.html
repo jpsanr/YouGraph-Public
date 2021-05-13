@@ -1,0 +1,134 @@
+<br>
+<form>
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col">
+                <label for="inp_url_canal">Url Canal</label>
+                <input type="text" class="form-control" id="inp_url_canal"  placeholder="Url do Canal">
+            </div>
+            <div class="col">
+                <label for="inp_id_canal">Id Canal</label>
+                <input type="text" class="form-control" id="inp_id_canal"  placeholder="ID do Canal">
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="inp_nome_canal">Nome do Canal</label>
+        <input type="text" class="form-control" id="inp_nome_canal"  placeholder="Nome do Canal">
+    </div>
+    
+    <div class="form-group">
+        <label for="inp_descricao">Descrição do canal</label>
+        <input type="text" class="form-control" id="inp_descricao" placeholder="Descrição do canal" disabled>
+    </div>
+    
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col">
+                <label for="inp_categoria">Categoria do canal</label>
+                <input type="text" class="form-control" id="inp_categoria" placeholder="Categoria do canal">
+            </div>
+            <div class="col">
+                <label for="inp_pais_canal">País de Origem</label>
+                <input type="text" class="form-control" id="inp_pais_canal"  placeholder="País de Origem">
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-row">
+        <div class="col">
+            <label for="drp_genero">Genêro do Autor:</label>
+            <select id="drp_genero" class="form-control">
+                <option selected>Masculino</option>
+                <option selected>Feminino</option>
+                <option selected>Ambos</option>
+                <option selected>Não se aplica</option>
+            </select>
+        </div>
+        <div class="col">
+            <label for="drp_ano_criacao">Ano de criação do Canal:</label>
+            <select id="drp_ano_criacao" class="form-control">
+                <option selected>2009</option>
+                <option selected>2010</option>
+                <option selected>2011</option>
+                <option selected>2012</option>
+                <option selected>2013</option>
+                <option selected>2014</option>
+                <option selected>2015</option>
+                <option selected>2016</option>
+                <option selected>2017</option>
+                <option selected>2018</option>
+                <option selected>2019</option>
+                <option selected>2020</option>
+            </select>
+        </div>
+    </div>
+    
+    <br>
+    <div class="card bg-light " >
+        <div class="card-header"><b>Dados Numéricos</b></div>
+        <div class="card-body">
+            
+            <div class="form-row">
+                <div class="col">
+                    <label for="inp_num_comentarios">Total de Comentários</label>
+                    <input type="text" class="form-control" id="inp_num_comentarios"  placeholder="Num de comentários" disabled>
+                </div>
+                <div class="col">
+                    <label for="inp_num_videos_postados">Total de Vídeos Postados</label>
+                    <input type="text" class="form-control" id="inp_num_videos_postados"  placeholder="Num de vídeos postados" disabled>
+                </div>
+                <div class="col">
+                    <label for="inp_num_views">Total de Visualizações</label>
+                    <input type="text" class="form-control" id="inp_num_views"  placeholder="Num de visualizações" disabled>
+                </div>
+                <div class="col">
+                    <label for="inp_num_inscritos">Total de Inscritos</label>
+                    <input type="text" class="form-control" id="inp_num_inscritos"  placeholder="Num de inscritos" disabled>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+    <br>
+    <button type="button" class="btn btn-success" id="btn_adicionar_canal">Adicionar</button>
+</form>
+
+<script type="text/javascript">
+    
+    btn_adicionar_canal.onclick = function(){
+
+        $.ajax({
+            method: "POST",
+            url:"/add_novo_canal",
+            data: { 
+                url_channel: $("#inp_url_canal").val(),
+                channel_id: $("#inp_id_canal").val(),
+                category: $("#inp_categoria").val(),
+                gender: $( "#drp_genero option:selected" ).text(),
+                channel_name: $("#inp_nome_canal").val(),
+                country: $("#inp_pais_canal").val(),
+                year: $( "#drp_ano_criacao option:selected" ).text(),
+                channel_description: $("#inp_descricao").val(),
+                comment_count: $("#inp_num_comentarios").val(),
+                video_count: $("#inp_num_videos_postados").val(),
+                subscriber_count: $("#inp_num_inscritos").val(),
+                view_count: $("#inp_num_views").val(),
+                aux_status:0
+                
+            }
+        }).done(function(data) {
+            alert("Dados adicionados com sucesso!")
+        })
+        .fail(function() {
+            alert("Ops algo deu errado!")
+        })
+        .always(function() {
+            
+        });
+        
+    };
+    
+</script>

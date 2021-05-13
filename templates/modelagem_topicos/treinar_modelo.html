@@ -1,0 +1,301 @@
+<br>
+<form>
+    <div class="form-group">
+        <label for="drp_corpus"><b>Selecione um corpus:</b></label>
+        <select id="drp_corpus" class="form-control">
+            {% for row in corpus_disponiveis.iterrows() %}
+                <option value="{{ row[1]['base']}}" selected> {{ row[1]['base']}} </option>
+            {% endfor %}
+        </select>
+    </div>
+    
+
+    <div class="form-group">
+        <label for="drp_idioma"><b>Selecione o idioma do modelo:</b></label>
+        <select id="drp_idioma" class="form-control">
+            
+            <option value="pt-br" selected> Português Brasileiro </option>
+            <option value="us-en" selected> Inglês Americano</option>
+        
+        </select>
+    </div>
+       
+ 
+
+    <div class="card bg-light " >
+        <div class="card-header"><b>StopWords:</b></div>
+        <div class="card-body">
+            
+            <div class="form-row">
+                <div class="col">
+                    <label for="rb_filtrar_stopwords"><b>Filtrar stopWords?</b></label>
+                    <div  class="form-check">
+                        <input class="form-check-input" type="radio" name="rb_filtrar_stopwords" value="sim" checked>
+                        <label class="form-check-label">Filtrar StopWords</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rb_filtrar_stopwords" value="nao">
+                        <label class="form-check-label">Não filtrar StopWords</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="inp_stopwords"><b>Adicionar Novas StopWords</b></label>
+                        <input type="text" class="form-control" id="inp_stopwords"  placeholder="Palavras">
+                    </div>
+
+                </div>
+             
+            </div>         
+        </div>
+    </div>
+    <br>
+    <div class="card bg-light " >
+        <div class="card-header"><b>Filtragem de PosTag:</b></div>
+        <div class="card-body">
+            <p><b>Selecione os PosTags que você deseja incluir do treinamento:</b></p>
+
+                <table class="table table-bordered" id="table">
+                    
+                        <tr>
+                            <td>ADJ</td>
+                            <td>ADP</td>
+                            <td>ADV</td>
+                            <td>AUX</td>
+                            <td>CONJ</td>
+                            <td>CCONJ</td>
+                            <td>DET</td>
+                            <td>INTJ</td>
+                            <td>NOUN</td>
+                        </tr>
+                        <tr>                         
+                            <td>NUM</td>
+                            <td>PART</td>
+                            <td>PRON</td>
+                            <td>PROPN</td>
+                            <td>SCONJ</td>
+                            <td>VERB</td>
+                            <td>X</td>
+                            <td>SPACE</td>
+                            <!-- <td>PRON</td> -->
+
+                        </tr> 
+                </table>
+             
+
+        </div>
+    </div>
+
+    <br>
+    <div class="form-group">
+        <label for="drp_subs_ner"><b>Substituir NER por Labels?</b></label>
+        <select id="drp_subs_ner" class="form-control">
+            
+            <option value="sim" selected> Sim </option>
+            <option value="nao" selected> Não</option>
+        
+        </select>
+    </div>
+
+    <br>
+
+    <div class="card bg-light " >
+        <div class="card-header"><b>Geração dos Gramas:</b></div>
+        <div class="card-body">
+            
+            <div class="form-row">
+                <div class="col">
+                    <label for="rb_gerar_gramas"><b>Gerar Gramas?</b></label>
+                    <div  class="form-check">
+                        <input class="form-check-input" type="radio" name="rb_gerar_gramas"  value="sim" checked>
+                        <label class="form-check-label">Gerar</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rb_gerar_gramas"  value="nao">
+                        <label class="form-check-label" >Não gerar</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <label for="inp_min_count"><b>Min Count</b></label>
+                    <input type="number" class="form-control" id="inp_min_count"  placeholder="5">
+                </div>
+                <div class="col">
+                    <label for="inp_threshold"><b>Threshold</b></label>
+                    <input type="number" class="form-control" id="inp_threshold"  placeholder="10">
+                </div>
+                </div>
+            </div>         
+        </div>
+
+
+        <br>
+
+        <div class="card bg-light " >
+            <div class="card-header"><b>Seleção dinâmica do melhor modelo:</b></div>
+            <div class="card-body">
+               
+                <label for="inp_diff_coerencia"><b>Diferença de coerência entre modelos:</b></label>
+                        <div class="input-group mb-3">
+                            <input type="number" class="form-control" placeholder="2" id="inp_diff_coerencia" >
+                            <div class="input-group-append">
+                            <span class="input-group-text">%</span>
+                            </div>
+                    </div>
+
+                <div class="form-row">
+
+                    <div class="col">
+                        <label for="inp_num_topicos_inicial"><b>Num Inicial de Tópicos</b></label>
+                        <input type="number" class="form-control" id="inp_num_topicos_inicial"  placeholder="5">
+                    </div>
+
+                    <div class="col">
+                        <label for="inp_num_max_topicos"><b>Num Máximo de Tópicos</b></label>
+                        <input type="number" class="form-control" id="inp_num_max_topicos"  placeholder="140">
+                    </div>
+                    
+                    <div class="col">
+                        <label for="inp_step"><b>Steps</b></label>
+                        <input type="number" class="form-control" id="inp_step"  placeholder="3">
+                    </div>
+
+                </div>
+            </div>         
+        </div>
+
+
+
+
+
+
+
+    </div>
+    <br>
+    <button type="button" class="btn btn-success" id="btn_gerar_modelo">Gerar Modelo</button>
+</form>
+{% include "modelagem_topicos/modal_em_treinamento.html" %}
+{% include "modelagem_topicos/modal_treinamento_concluido.html" %}
+
+
+<script type="text/javascript">
+   lista_pos_tag = []
+
+
+    btn_gerar_modelo.onclick = function(){
+        
+        
+
+        $("#modal_treinamento").modal("toggle");
+
+        lista_stop_words = $("#inp_stopwords").val().split(", "); 
+        
+        console.log(lista_pos_tag)
+
+        $.ajax({
+            method: "POST",
+            url:"/treinar_modelo",
+            data: { 
+                "corpus":                 $( "#drp_corpus option:selected" ).val(),
+                "idioma":                 $( "#drp_idioma option:selected" ).val(),
+                "lista_stop_words":       lista_stop_words,
+                "lista_pos_tag":          lista_pos_tag,
+                "min_count":              $("#inp_min_count").val(), 
+                "threshold":              $("#inp_threshold").val(),
+                "corencia":               $("#inp_diff_coerencia").val(),
+                "filtro_ner":             $( "#drp_subs_ner option:selected" ).val(),
+                "num_topicos_inicial":    $("#inp_num_topicos_inicial").val(),
+                "step":                   $("#inp_step").val(),
+                "num_max_topicos":        $("#inp_num_max_topicos").val(),
+                
+            }
+        }).done(function(data) {
+            $("#modal_treinamento").modal("toggle");
+
+            $("#span_coerencia").text(data.melhor_coerencia);
+            $("#span_num_topicos").text(data.num_topicos);
+            $("#span_data_modelo").text(data.data_modelo);
+
+            $("#modal_treinamento_concluido").modal("toggle");
+        })
+        .fail(function() {
+            $("#modal_treinamento").modal("toggle");
+            
+        
+            
+            alert("Ops algo deu errado!")
+        })
+        .always(function() {
+            
+        });
+
+    };
+
+    btn_classificar_corpus.onclick = function(){
+        $.ajax({
+            method: "POST",
+            url:"/classificar_corpus",
+            data: {
+                "date": $("#span_data_modelo").text(),
+                "num_topicos": $("#span_num_topicos").text()
+
+            }
+        }).done(function(data) {
+          
+        })
+        .fail(function() {
+         
+        })
+        .always(function() {
+            
+        });
+
+    };
+
+
+
+   $('td').click(function() {
+        $(this).toggleClass( "table-success" );
+        let pos_tag = $(this).text()
+
+        if (lista_pos_tag.includes(pos_tag)) // se elemento esta na lista remove ele, se não adiciona
+        {
+            var index = lista_pos_tag.indexOf(pos_tag);
+            lista_pos_tag.splice(index, 1);
+        }
+        else
+        {
+            lista_pos_tag.push(pos_tag)
+        }
+    });
+
+    $('td').hover(function() {
+        $(this).toggleClass( "table-info" );
+    });
+
+    $('input:radio[name="rb_filtrar_stopwords"]').change(function(){
+        if($(this).val() == 'sim'){
+            $( "#inp_stopwords" ).prop( "disabled", false );
+        }
+        if($(this).val() == 'nao'){
+            $( "#inp_stopwords" ).val("")
+            $( "#inp_stopwords" ).prop( "disabled", true );
+        }
+       
+    });
+
+    $('input:radio[name="rb_gerar_gramas"]').change(function(){
+        if($(this).val() == 'sim'){
+            $( "#inp_min_count" ).val("5")
+            $( "#inp_threshold" ).val("10")
+            $( "#inp_min_count" ).prop( "disabled", false );
+            $( "#inp_threshold" ).prop( "disabled", false );
+        }
+        if($(this).val() == 'nao'){
+            $( "#inp_min_count" ).val("0")
+            $( "#inp_threshold" ).val("0")
+            $( "#inp_min_count" ).prop( "disabled", true );
+            $( "#inp_threshold" ).prop( "disabled", true );
+        }
+       
+    });
+</script>

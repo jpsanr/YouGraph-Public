@@ -1,0 +1,37 @@
+<form>
+    <br>
+    <div class="container">
+        <b>Clique para extrair as entidades nomeadas:</b>
+        <br><br>
+        <button type="button" class="btn btn-dark" id="btn_persistir_tuplas">Persistir Tuplas</button>
+    </div>
+</form>
+
+
+<script type="text/javascript">
+
+    btn_persistir_tuplas.onclick = function(){
+    
+        $("#modal_processando").modal("toggle");
+        
+        $.ajax({
+            method: "POST",
+            url:"/grafo_tuplas_conhecimento",
+            data: {
+                "corpus": $("#drp_corpus option:selected" ).val(),
+                "transcription_type": $('input[name="rb_transcription_type"]:checked').val(),
+                "idioma": $("#drp_idioma option:selected" ).val()
+            }
+        }).done(function(data) {
+            $("#modal_processando").modal("toggle");
+        })
+        .fail(function() {
+            $("#modal_processando").modal("toggle");
+            alert("Algo deu errado!");
+        })
+        .always(function() {
+            
+        });
+    
+    };
+    </script>

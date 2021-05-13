@@ -1,0 +1,95 @@
+/* Customizando Bootstrap */
+
+
+.bg-custom{
+  
+  background-color: #2C334F !important;
+  color: white  !important;
+  border-color: #84838a;
+}
+
+.list-group-item:hover{
+  
+  background-color: #416075 !important;
+
+}
+
+.navbar-brand{
+  color: white  !important;
+}
+
+/* Fim Customização */
+
+
+
+
+#wrapper {
+    overflow-x: hidden;
+ }
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}
+
+.api_offline {
+  color: #bd2130 !important;
+}
+
+.api_waiting
+{
+  color: #d39e00 !important;
+}
+
+.api_online {
+  color: #1e7e34 !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+

@@ -1,0 +1,110 @@
+<div id="conteudo" class="container">
+  <h1>Grafos de Conhecimento</h1>
+
+    <div class="card">
+      
+      <div class="card-body">
+        
+
+        <div class="form-group">
+          <label for="drp_corpus"><b>Selecione um corpus:</b></label>
+          <select id="drp_corpus" class="form-control">
+              {% for row in corpus_disponiveis.iterrows() %}
+                  <option value="{{ row[1]['base']}}" selected> {{ row[1]['base']}} </option>
+              {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="drp_idioma"><b>Selecione o idioma do modelo:</b></label>
+          <select id="drp_idioma" class="form-control">
+              
+              <option value="us-en" selected> Inglês Americano</option>
+              <option value="pt-br" selected> Português Brasileiro </option>
+          </select>
+      </div>
+
+      <div >
+          <label for="rb_transcription_type"><b>Selecione o tipo da transcrição:</b></label>
+          <div  class="form-check">
+              <input class="form-check-input" type="radio" name="rb_transcription_type"  value="manual" checked>
+              <label class="form-check-label">Manual</label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="rb_transcription_type"  value="automatica">
+              <label class="form-check-label" >Automática</label>
+          </div>
+      </div>
+      <br>
+        <h4>Selecione a camada do grafo:</h4>
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#metadados" role="tab" aria-controls="home" >Metadados</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="tm_tab" data-toggle="tab" href="#tm" role="tab" aria-controls="profile" >Tópicos Latentes</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" id="ner_tab" data-toggle="tab" href="#ner" role="tab" aria-controls="profile" >Entidades Nomeadas</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" id="tupla_tab" data-toggle="tab" href="#tuplas_conhecimento" role="tab" aria-controls="profile">Tuplas de Conhecimento</a>
+          </li>
+        
+        
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="metadados" role="tabpanel" aria-labelledby="home-tab">
+            {% include "grafos/metadados.html" %}
+          </div>
+          <div class="tab-pane fade" id="tm" role="tabpanel" aria-labelledby="profile-tab">
+            {% include "grafos/topicos_latentes.html" %}
+          </div>
+          <div class="tab-pane fade" id="ner" role="tabpanel" aria-labelledby="profile-tab">
+            {% include "grafos/ners.html" %}
+          </div>
+          <div class="tab-pane fade" id="tuplas_conhecimento" role="tabpanel" aria-labelledby="profile-tab">
+            {% include "grafos/tuplas_conhecimento.html" %}
+          </div>
+    
+        </div>
+      </div>
+    </div>
+  
+</div>
+
+{% include "grafos/modal_processando.html" %}
+
+<script type="text/javascript">
+
+  tm_tab.onclick = function(){
+
+      $.ajax({
+          method: "POST",
+          url:"/carregar_modelos_tm",
+          data: {
+              "corpus": $("#drp_corpus option:selected" ).val(),
+          }
+      }).done(function(data) {
+  
+        object = data
+        for (const property in object) {
+          // console.log(`${property}: ${object[property].model}`);
+          $('#drp_modelo').append($('<option>', {
+            value: object[property].model,
+            text: object[property].model
+          }));
+        }
+
+      })
+      .fail(function() {
+          alert("Algo deu errado!");
+      })
+      .always(function() {
+      });
+  
+  };
+  </script>

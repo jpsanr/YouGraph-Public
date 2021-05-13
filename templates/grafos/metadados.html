@@ -1,0 +1,49 @@
+<form>
+    <br>
+    <div class="container">
+        <label for="check_info_canal"><b>Selecione os dados a serem persistidos:</b></label>
+        <br>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="check_info_canal" value="canal" checked disabled>
+            <label class="form-check-label" for="check_info_canal">Persistir Canais</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="check_info_video" value="video" checked disabled>
+            <label class="form-check-label" for="check_info_video">Persistir Vídeos</label>
+        </div>
+    </div>   
+
+    
+    <br> 
+
+    <button type="button" class="btn btn-success" id="btn_persistir_metadados_grafo">Persistir Metadados</button>
+</form>
+
+
+
+<script type="text/javascript">
+
+    btn_persistir_metadados_grafo.onclick = function(){
+    
+        $("#modal_processando").modal("toggle");
+        
+        $.ajax({
+            method: "POST",
+            url:"/gerar_grafo_metadado",
+            data: {
+                "corpus": $("#drp_corpus option:selected" ).val(),
+                "transcription_type": $('input[name="rb_transcription_type"]:checked').val()
+            }
+        }).done(function(data) {
+            $("#modal_processando").modal("toggle");
+        })
+        .fail(function() {
+            $("#modal_processando").modal("toggle");
+            alert("Algo deu errado!");
+        })
+        .always(function() {
+            
+        });
+    
+    };
+    </script>

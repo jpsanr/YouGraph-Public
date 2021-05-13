@@ -1,0 +1,36 @@
+<div id="conteudo" class="container">
+    <br>
+    <p>Clique no botão para atualizar as informações numéricas dos canais da base</p>
+    <button type="button" class="btn btn-info" id="btn_atualizar_canais_base">Atualizar</button>  
+</div>
+
+
+
+<script type="text/javascript">
+    
+    
+    btn_atualizar_canais_base.onclick = function(){
+        
+        
+        
+        $("#modal_api").modal("toggle");
+        
+        $.ajax({
+            method: "POST",
+            url:"/atualizar_canais",
+            data: {}
+        }).done(function(data) {
+            //alert("Dados adicionados com sucesso!")
+            $("#modal_api").modal("toggle")
+        })
+        .fail(function() {
+            $("#modal_api").modal("toggle")
+            alert("Ops algo deu errado!")
+        })
+        .always(function() {
+            
+        });    
+    }
+    
+    
+</script>

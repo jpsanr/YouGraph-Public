@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="pt">
+ 
+  {% include "esqueleto/header.html" %}
+
+  <body>
+    
+    {% include "esqueleto/sidebar.html" %}
+
+    {% include "{}.html".format(page) %} 
+
+  </body>
+
+  {% include "esqueleto/footer.html" %}
+</html>

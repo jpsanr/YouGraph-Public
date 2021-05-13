@@ -1,0 +1,121 @@
+<br>
+<form>
+    <div class="form-group">
+        <label for="drp_canais">Selecione um canal:</label>
+        <select id="drp_canais" class="form-control">
+            {% for canal in canais.iterrows() %}
+                <option value="{{ canal[1]['channel_id']}}" selected> {{ canal[1]['channel_name']}} </option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <div class="input-group mb-3">
+        <label for="inp_num_videos_extracao">Selecione quantos vídeos serão extraídos:</label>
+        <div class="input-group">
+            <input id="inp_num_videos_extracao" value=50 type="number" class="form-control" aria-label="Text input with segmented dropdown button" disabled>
+            <div class="input-group-append">
+            <div class="btn-group dropup">
+                <button id="btn_add_number" type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"></button>
+            </div>
+            <button id="btn_decrease_number" type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" aria-haspopup="true" aria-expanded="false">
+            </button>
+           
+            </div>
+        </div>
+    </div>
+
+    <div class="card bg-light " >
+        <div class="card-header"><b>Selecione quais campos serão extraídos:</b></div>
+        <div class="card-body">
+            
+            <div class="form-row">
+                <div class="col">
+                    <label for="rb_ordem_extracao"><b>Ordem da extração:</b></label>
+                    <div  class="form-check">
+                        <input class="form-check-input" type="radio" name="rb_ordem_extracao" id="rb_data" value="date" checked>
+                        <label class="form-check-label" for="rb_data">Por data</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rb_ordem_extracao" id="rb_relevancia" value="relevance">
+                        <label class="form-check-label" for="rb_relevancia">Por relevância</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <label for="rb_ordem_extracao"><b>Selecione os dados que serão extraídos:</b></label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" disabled>
+                        <label class="form-check-label" for="defaultCheck1">Subjetividade</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" disabled>
+                        <label class="form-check-label" for="defaultCheck2">Polaridade</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" disabled>
+                        <label class="form-check-label" for="defaultCheck2">Comentários</label>
+                    </div>
+
+                </div>
+             
+            </div>         
+        </div>
+       
+    </div>
+    <br>
+    <button type="button" class="btn btn-success" id="btn_extrair_videos">Extrair</button>
+</form>
+
+{% include "coletar_dados/modal_api_google.html" %}
+
+
+
+
+
+<script type="text/javascript">
+    
+    btn_extrair_videos.onclick = function(){
+        
+        $("#modal_api").modal("toggle");
+     
+        $.ajax({
+            method: "POST",
+            url:"/extrair_videos",
+            data: { 
+                channel_id: $( "#drp_canais option:selected" ).val().toString(),
+                extraction_order: $('input[name="rb_ordem_extracao"]:checked').val(),
+                num_videos_extracao: parseInt($("#inp_num_videos_extracao").val())          
+            }
+        }).done(function(data) {
+            //alert("Dados adicionados com sucesso!")
+            $("#modal_api").modal("toggle")
+        })
+        .fail(function() {
+            $("#modal_api").modal("toggle")
+            alert("Ops algo deu errado!")
+        })
+        .always(function() {
+            
+        });
+        
+    };
+
+    intervalo = 50
+    //$("#inp_num_videos_extracao").val(intervalo)
+    btn_add_number.onclick =function(){
+        num_videos = parseInt($("#inp_num_videos_extracao").val()) + intervalo
+        $("#inp_num_videos_extracao").val(num_videos) 
+    }
+
+    btn_decrease_number.onclick =function(){
+        num_videos = parseInt($("#inp_num_videos_extracao").val())
+        if(num_videos<=intervalo)
+        {
+            num_videos = intervalo
+        }
+        else{
+            num_videos = num_videos - intervalo
+        }
+        $("#inp_num_videos_extracao").val(num_videos)
+    }
+    
+</script>

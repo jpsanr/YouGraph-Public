@@ -1,0 +1,51 @@
+<form>
+    <br>
+    
+    <div class="form-group">
+        <label for="drp_modelo"><b>Selecione o modelo:</b></label>
+        <select id="drp_modelo" class="form-control">
+        </select>
+      </div>
+
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="canal" checked disabled>
+        <label class="form-check-label" for="inlineCheckbox1">Adicionar nós tópicos</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="video" checked disabled>
+        <label class="form-check-label" for="inlineCheckbox2">Vincular ao vídeos</label>
+    </div>
+  
+    <br> <br>
+
+    <button type="button" class="btn btn-info" id="btn_persistir_topicos_latentes">Persistir Tópicos</button>
+</form>
+
+
+<script type="text/javascript">
+
+    btn_persistir_topicos_latentes.onclick = function(){
+    
+        $("#modal_processando").modal("toggle");
+        $.ajax({
+            method: "POST",
+            url:"/gerar_grafo_topicos_latentes",
+            data: {
+                "corpus": $("#drp_corpus option:selected" ).val(),
+                "transcription_type": $('input[name="rb_transcription_type"]:checked').val(),
+                "idioma": $("#drp_idioma option:selected" ).val(),
+                "model": $("#drp_modelo option:selected" ).val()
+            }
+        }).done(function(data) {
+            $("#modal_processando").modal("toggle");
+        })
+        .fail(function() {
+            $("#modal_processando").modal("toggle");
+            alert("Algo deu errado!");
+        })
+        .always(function() {
+            
+        });
+    
+    };
+    </script>
