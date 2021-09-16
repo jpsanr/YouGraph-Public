@@ -23,6 +23,7 @@ We thank the following people who contributed to this project:
  - Eduardo Tieppo 
  - Ana Cristina Munaro
  - Elisa Terumi
+ - Emerson Cabrera Paraiso
 
 
 ## 😄 Contribute
