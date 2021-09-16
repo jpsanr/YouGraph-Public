@@ -19,11 +19,11 @@ In this way, this repository aims to offer all the necessary tools for the publi
 
 We thank the following people who contributed to this project:
 
- - João Pedro Santos Rodrigues
- - Eduardo Tieppo 
- - Ana Cristina Munaro
- - Elisa Terumi
- - Emerson Cabrera Paraiso
+ - [João Pedro Santos Rodrigues](
+ - [Eduardo Tieppo](
+ - [Ana Cristina Munaro](
+ - [Elisa Terumi](
+ - [Emerson Cabrera Paraiso](
 
 
 ## 😄 Contribute
