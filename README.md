@@ -19,11 +19,11 @@ In this way, this repository aims to offer all the necessary tools for the publi
 
 We thank the following people who contributed to this project:
 
- - [João Pedro Santos Rodrigues](https://www.linkedin.com/in/jo%C3%A3o-rodrigues93/)
- - [Eduardo Tieppo](https://www.linkedin.com/in/eduardotieppo/)
- - [Ana Cristina Munaro](https://www.linkedin.com/in/ana-cristina-munaro/)
- - [Elisa Terumi](https://www.linkedin.com/in/elisa-terumi-rubel-schneider/)
- - [Emerson Cabrera Paraiso](https://www.linkedin.com/in/emerson-cabrera-paraiso-a334491/)
+ - [João Pedro Santos Rodrigues](https://www.linkedin.com/in/jo%C3%A3o-rodrigues93/) - Senior Data Scientist at O Boticário Group
+ - [Eduardo Tieppo](https://www.linkedin.com/in/eduardotieppo/) - Professor at the Federal Institute of Paraná (IFPR)
+ - [Ana Cristina Munaro](https://www.linkedin.com/in/ana-cristina-munaro/) - Communication and Marketing Coordinator at PUCPR
+ - [Elisa Terumi](https://www.linkedin.com/in/elisa-terumi-rubel-schneider/) - Phd Candidate in Computing @PUCPR, IT Analyst and Systems Developer
+ - [Emerson Cabrera Paraiso](https://www.linkedin.com/in/emerson-cabrera-paraiso-a334491/) - Full Professor at PPGIa/PUCPR
 
 
 ## 😄 Contribute
